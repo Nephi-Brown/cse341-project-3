@@ -14,10 +14,10 @@ GET https://cse341-project-3-3d60.onrender.com/videogames/698e2967b8415e6449eac2
 GET https://cse341-project-3-3d60.onrender.com/movies
 
 ### Get a movie
-GET https://cse341-project-3-3d60.onrender.com/movies
+GET https://cse341-project-3-3d60.onrender.com/movies/698e2976b8415e6449eac2c8
 
 ### Get all music
 GET https://cse341-project-3-3d60.onrender.com/music
 
 ### Get a song
-GET https://cse341-project-3-3d60.onrender.com/music
+GET https://cse341-project-3-3d60.onrender.com/music/698e2985b8415e6449eac2d5

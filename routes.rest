@@ -1,0 +1,23 @@
+### Get all literature
+GET https://cse341-project-3-3d60.onrender.com/literature
+
+### Get a book
+GET https://cse341-project-3-3d60.onrender.com/literature/698e294cb8415e6449eac2af
+
+### Get all video games
+GET https://cse341-project-3-3d60.onrender.com/videogames
+
+### Get a user
+GET https://cse341-project-3-3d60.onrender.com/videogames/698e2967b8415e6449eac2ba
+
+### Get all movies
+GET https://cse341-project-3-3d60.onrender.com/movies
+
+### Get a movie
+GET https://cse341-project-3-3d60.onrender.com/movies
+
+### Get all music
+GET https://cse341-project-3-3d60.onrender.com/music
+
+### Get a song
+GET https://cse341-project-3-3d60.onrender.com/music

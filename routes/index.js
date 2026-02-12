@@ -6,6 +6,8 @@ router.use('/', require('./swagger'));
 
 router.use('/literature', require('./literature'));
 router.use('/videogames', require('./videogames'));
+router.use('/movies', require('./movies'));
+router.use('/music', require('./music'));
 
 router.get('/login', passport.authenticate('github'), (req, res) => {});
 

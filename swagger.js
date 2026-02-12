@@ -5,7 +5,7 @@ const doc = {
     title: 'Personal Library API',
     description: 'Books and Notes CRUD API'
   },
-  host: 'se341-project-2-dkb3.onrender.com',
+  host: 'cse341-project-3-3d60.onrender.com',
   schemes: ['https']
 };
 

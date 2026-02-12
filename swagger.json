@@ -5,29 +5,46 @@
     "description": "Books and Notes CRUD API",
     "version": "1.0.0"
   },
-  "host": "cse341-project-2-dkb3.onrender.com",
+  "host": "cse341-project-3-3d60.onrender.com",
   "basePath": "/",
   "schemes": [
     "https"
   ],
   "paths": {
-    "/": {
+    "/login": {
       "get": {
-        "tags": [
-          "Hello World"
-        ],
         "description": "",
         "responses": {
-          "200": {
-            "description": "OK"
+          "default": {
+            "description": ""
           }
         }
       }
     },
-    "/books/": {
+    "/logout": {
+      "get": {
+        "description": "",
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/api-docs": {
+      "get": {
+        "description": "",
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/literature/": {
       "get": {
         "tags": [
-          "Books"
+          "Literature"
         ],
         "description": "",
         "produces": [
@@ -44,7 +61,7 @@
       },
       "post": {
         "tags": [
-          "Books"
+          "Literature"
         ],
         "description": "",
         "parameters": [
@@ -54,31 +71,25 @@
             "schema": {
               "type": "object",
               "properties": {
-                "finishDate": {
-                  "example": "any"
-                },
                 "title": {
                   "example": "any"
                 },
                 "author": {
                   "example": "any"
                 },
-                "isbn": {
+                "publishDate": {
                   "example": "any"
                 },
-                "genre": {
+                "publisher": {
+                  "example": "any"
+                },
+                "price": {
+                  "example": "any"
+                },
+                "bio": {
                   "example": "any"
                 },
                 "status": {
-                  "example": "any"
-                },
-                "rating": {
-                  "example": "any"
-                },
-                "startDate": {
-                  "example": "any"
-                },
-                "tags": {
                   "example": "any"
                 }
               }
@@ -101,10 +112,10 @@
         }
       }
     },
-    "/books/{id}": {
+    "/literature/{id}": {
       "get": {
         "tags": [
-          "Books"
+          "Literature"
         ],
         "description": "",
         "produces": [
@@ -135,7 +146,7 @@
       },
       "put": {
         "tags": [
-          "Books"
+          "Literature"
         ],
         "description": "",
         "parameters": [
@@ -151,31 +162,25 @@
             "schema": {
               "type": "object",
               "properties": {
-                "finishDate": {
-                  "example": "any"
-                },
                 "title": {
                   "example": "any"
                 },
                 "author": {
                   "example": "any"
                 },
-                "isbn": {
+                "publishDate": {
                   "example": "any"
                 },
-                "genre": {
+                "publisher": {
+                  "example": "any"
+                },
+                "price": {
+                  "example": "any"
+                },
+                "bio": {
                   "example": "any"
                 },
                 "status": {
-                  "example": "any"
-                },
-                "rating": {
-                  "example": "any"
-                },
-                "startDate": {
-                  "example": "any"
-                },
-                "tags": {
                   "example": "any"
                 }
               }
@@ -202,7 +207,7 @@
       },
       "delete": {
         "tags": [
-          "Books"
+          "Literature"
         ],
         "description": "",
         "parameters": [
@@ -232,10 +237,10 @@
         }
       }
     },
-    "/notes/": {
+    "/videogames/": {
       "get": {
         "tags": [
-          "Notes"
+          "VideoGames"
         ],
         "description": "",
         "produces": [
@@ -252,7 +257,7 @@
       },
       "post": {
         "tags": [
-          "Notes"
+          "VideoGames"
         ],
         "description": "",
         "parameters": [
@@ -262,16 +267,25 @@
             "schema": {
               "type": "object",
               "properties": {
-                "bookId": {
+                "title": {
                   "example": "any"
                 },
-                "page": {
+                "creator": {
                   "example": "any"
                 },
-                "quote": {
+                "releaseDate": {
                   "example": "any"
                 },
-                "note": {
+                "publisher": {
+                  "example": "any"
+                },
+                "price": {
+                  "example": "any"
+                },
+                "description": {
+                  "example": "any"
+                },
+                "status": {
                   "example": "any"
                 }
               }
@@ -288,19 +302,16 @@
           "401": {
             "description": "Unauthorized"
           },
-          "404": {
-            "description": "Not Found"
-          },
           "500": {
             "description": "Internal Server Error"
           }
         }
       }
     },
-    "/notes/{id}": {
+    "/videogames/{id}": {
       "get": {
         "tags": [
-          "Notes"
+          "VideoGames"
         ],
         "description": "",
         "produces": [
@@ -331,7 +342,7 @@
       },
       "put": {
         "tags": [
-          "Notes"
+          "VideoGames"
         ],
         "description": "",
         "parameters": [
@@ -347,16 +358,25 @@
             "schema": {
               "type": "object",
               "properties": {
-                "bookId": {
+                "title": {
                   "example": "any"
                 },
-                "page": {
+                "creator": {
                   "example": "any"
                 },
-                "quote": {
+                "releaseDate": {
                   "example": "any"
                 },
-                "note": {
+                "publisher": {
+                  "example": "any"
+                },
+                "price": {
+                  "example": "any"
+                },
+                "description": {
+                  "example": "any"
+                },
+                "status": {
                   "example": "any"
                 }
               }
@@ -383,7 +403,7 @@
       },
       "delete": {
         "tags": [
-          "Notes"
+          "VideoGames"
         ],
         "description": "",
         "parameters": [

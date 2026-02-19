@@ -7,32 +7,44 @@
   },
   "host": "cse341-project-3-3d60.onrender.com",
   "basePath": "/",
-  "schemes": [
-    "https"
-  ],
+  "schemes": ["https"],
   "paths": {
     "/literature/": {
       "get": {
-        "tags": [
-          "Literature"
-        ],
-        "description": "",
-        "produces": [
-          "application/json"
+        "tags": ["Literature"],
+        "description": "Get all literature. Optional search by title, author, and availability (status).",
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "title",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "description": "Search by title (partial match, case-insensitive)."
+          },
+          {
+            "name": "author",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "description": "Search by author (partial match, case-insensitive)."
+          },
+          {
+            "name": "status",
+            "in": "query",
+            "required": false,
+            "type": "boolean",
+            "description": "Availability: true = available, false = checked out."
+          }
         ],
         "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
+          "200": { "description": "OK" },
+          "400": { "description": "Bad Request" },
+          "500": { "description": "Internal Server Error" }
         }
       },
       "post": {
-        "tags": [
-          "Literature"
-        ],
+        "tags": ["Literature"],
         "description": "",
         "parameters": [
           {
@@ -41,194 +53,123 @@
             "schema": {
               "type": "object",
               "properties": {
-                "title": {
-                  "example": "any"
-                },
-                "author": {
-                  "example": "any"
-                },
-                "publishDate": {
-                  "example": "any"
-                },
-                "publisher": {
-                  "example": "any"
-                },
-                "price": {
-                  "example": "any"
-                },
-                "bio": {
-                  "example": "any"
-                },
-                "status": {
-                  "example": "any"
-                }
+                "title": { "example": "any" },
+                "author": { "example": "any" },
+                "publishDate": { "example": "any" },
+                "publisher": { "example": "any" },
+                "price": { "example": "any" },
+                "bio": { "example": "any" },
+                "status": { "example": "any" }
               }
             }
           }
         ],
         "responses": {
-          "201": {
-            "description": "Created"
-          },
-          "400": {
-            "description": "Bad Request"
-          },
-          "401": {
-            "description": "Unauthorized"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
+          "201": { "description": "Created" },
+          "400": { "description": "Bad Request" },
+          "401": { "description": "Unauthorized" },
+          "500": { "description": "Internal Server Error" }
         }
       }
     },
+
     "/literature/{id}": {
       "get": {
-        "tags": [
-          "Literature"
-        ],
+        "tags": ["Literature"],
         "description": "",
-        "produces": [
-          "application/json"
-        ],
+        "produces": ["application/json"],
         "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
+          { "name": "id", "in": "path", "required": true, "type": "string" }
         ],
         "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "400": {
-            "description": "Bad Request"
-          },
-          "404": {
-            "description": "Not Found"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
+          "200": { "description": "OK" },
+          "400": { "description": "Bad Request" },
+          "404": { "description": "Not Found" },
+          "500": { "description": "Internal Server Error" }
         }
       },
       "put": {
-        "tags": [
-          "Literature"
-        ],
+        "tags": ["Literature"],
         "description": "",
         "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          },
+          { "name": "id", "in": "path", "required": true, "type": "string" },
           {
             "name": "body",
             "in": "body",
             "schema": {
               "type": "object",
               "properties": {
-                "title": {
-                  "example": "any"
-                },
-                "author": {
-                  "example": "any"
-                },
-                "publishDate": {
-                  "example": "any"
-                },
-                "publisher": {
-                  "example": "any"
-                },
-                "price": {
-                  "example": "any"
-                },
-                "bio": {
-                  "example": "any"
-                },
-                "status": {
-                  "example": "any"
-                }
+                "title": { "example": "any" },
+                "author": { "example": "any" },
+                "publishDate": { "example": "any" },
+                "publisher": { "example": "any" },
+                "price": { "example": "any" },
+                "bio": { "example": "any" },
+                "status": { "example": "any" }
               }
             }
           }
         ],
         "responses": {
-          "204": {
-            "description": "No Content"
-          },
-          "400": {
-            "description": "Bad Request"
-          },
-          "401": {
-            "description": "Unauthorized"
-          },
-          "404": {
-            "description": "Not Found"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
+          "204": { "description": "No Content" },
+          "400": { "description": "Bad Request" },
+          "401": { "description": "Unauthorized" },
+          "404": { "description": "Not Found" },
+          "500": { "description": "Internal Server Error" }
         }
       },
       "delete": {
-        "tags": [
-          "Literature"
-        ],
+        "tags": ["Literature"],
         "description": "",
         "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
+          { "name": "id", "in": "path", "required": true, "type": "string" }
         ],
         "responses": {
-          "204": {
-            "description": "No Content"
-          },
-          "400": {
-            "description": "Bad Request"
-          },
-          "401": {
-            "description": "Unauthorized"
-          },
-          "404": {
-            "description": "Not Found"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
+          "204": { "description": "No Content" },
+          "400": { "description": "Bad Request" },
+          "401": { "description": "Unauthorized" },
+          "404": { "description": "Not Found" },
+          "500": { "description": "Internal Server Error" }
         }
       }
     },
+
     "/videogames/": {
       "get": {
-        "tags": [
-          "VideoGames"
-        ],
-        "description": "",
-        "produces": [
-          "application/json"
+        "tags": ["VideoGames"],
+        "description": "Get all video games. Optional search by title, developer, and availability (status).",
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "title",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "description": "Search by title (partial match, case-insensitive)."
+          },
+          {
+            "name": "developer",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "description": "Search by developer (partial match, case-insensitive)."
+          },
+          {
+            "name": "status",
+            "in": "query",
+            "required": false,
+            "type": "boolean",
+            "description": "Availability: true = available, false = checked out."
+          }
         ],
         "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
+          "200": { "description": "OK" },
+          "400": { "description": "Bad Request" },
+          "500": { "description": "Internal Server Error" }
         }
       },
       "post": {
-        "tags": [
-          "VideoGames"
-        ],
+        "tags": ["VideoGames"],
         "description": "",
         "parameters": [
           {
@@ -237,194 +178,123 @@
             "schema": {
               "type": "object",
               "properties": {
-                "title": {
-                  "example": "any"
-                },
-                "creator": {
-                  "example": "any"
-                },
-                "releaseDate": {
-                  "example": "any"
-                },
-                "publisher": {
-                  "example": "any"
-                },
-                "price": {
-                  "example": "any"
-                },
-                "description": {
-                  "example": "any"
-                },
-                "status": {
-                  "example": "any"
-                }
+                "title": { "example": "any" },
+                "creator": { "example": "any" },
+                "releaseDate": { "example": "any" },
+                "publisher": { "example": "any" },
+                "price": { "example": "any" },
+                "description": { "example": "any" },
+                "status": { "example": "any" }
               }
             }
           }
         ],
         "responses": {
-          "201": {
-            "description": "Created"
-          },
-          "400": {
-            "description": "Bad Request"
-          },
-          "401": {
-            "description": "Unauthorized"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
+          "201": { "description": "Created" },
+          "400": { "description": "Bad Request" },
+          "401": { "description": "Unauthorized" },
+          "500": { "description": "Internal Server Error" }
         }
       }
     },
+
     "/videogames/{id}": {
       "get": {
-        "tags": [
-          "VideoGames"
-        ],
+        "tags": ["VideoGames"],
         "description": "",
-        "produces": [
-          "application/json"
-        ],
+        "produces": ["application/json"],
         "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
+          { "name": "id", "in": "path", "required": true, "type": "string" }
         ],
         "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "400": {
-            "description": "Bad Request"
-          },
-          "404": {
-            "description": "Not Found"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
+          "200": { "description": "OK" },
+          "400": { "description": "Bad Request" },
+          "404": { "description": "Not Found" },
+          "500": { "description": "Internal Server Error" }
         }
       },
       "put": {
-        "tags": [
-          "VideoGames"
-        ],
+        "tags": ["VideoGames"],
         "description": "",
         "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          },
+          { "name": "id", "in": "path", "required": true, "type": "string" },
           {
             "name": "body",
             "in": "body",
             "schema": {
               "type": "object",
               "properties": {
-                "title": {
-                  "example": "any"
-                },
-                "creator": {
-                  "example": "any"
-                },
-                "releaseDate": {
-                  "example": "any"
-                },
-                "publisher": {
-                  "example": "any"
-                },
-                "price": {
-                  "example": "any"
-                },
-                "description": {
-                  "example": "any"
-                },
-                "status": {
-                  "example": "any"
-                }
+                "title": { "example": "any" },
+                "creator": { "example": "any" },
+                "releaseDate": { "example": "any" },
+                "publisher": { "example": "any" },
+                "price": { "example": "any" },
+                "description": { "example": "any" },
+                "status": { "example": "any" }
               }
             }
           }
         ],
         "responses": {
-          "204": {
-            "description": "No Content"
-          },
-          "400": {
-            "description": "Bad Request"
-          },
-          "401": {
-            "description": "Unauthorized"
-          },
-          "404": {
-            "description": "Not Found"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
+          "204": { "description": "No Content" },
+          "400": { "description": "Bad Request" },
+          "401": { "description": "Unauthorized" },
+          "404": { "description": "Not Found" },
+          "500": { "description": "Internal Server Error" }
         }
       },
       "delete": {
-        "tags": [
-          "VideoGames"
-        ],
+        "tags": ["VideoGames"],
         "description": "",
         "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
+          { "name": "id", "in": "path", "required": true, "type": "string" }
         ],
         "responses": {
-          "204": {
-            "description": "No Content"
-          },
-          "400": {
-            "description": "Bad Request"
-          },
-          "401": {
-            "description": "Unauthorized"
-          },
-          "404": {
-            "description": "Not Found"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
+          "204": { "description": "No Content" },
+          "400": { "description": "Bad Request" },
+          "401": { "description": "Unauthorized" },
+          "404": { "description": "Not Found" },
+          "500": { "description": "Internal Server Error" }
         }
       }
     },
+
     "/movies/": {
       "get": {
-        "tags": [
-          "Movies"
-        ],
-        "description": "",
-        "produces": [
-          "application/json"
+        "tags": ["Movies"],
+        "description": "Get all movies. Optional search by title, director, and availability (status).",
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "title",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "description": "Search by title (partial match, case-insensitive)."
+          },
+          {
+            "name": "director",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "description": "Search by director (partial match, case-insensitive)."
+          },
+          {
+            "name": "status",
+            "in": "query",
+            "required": false,
+            "type": "boolean",
+            "description": "Availability: true = available, false = checked out."
+          }
         ],
         "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
+          "200": { "description": "OK" },
+          "400": { "description": "Bad Request" },
+          "500": { "description": "Internal Server Error" }
         }
       },
       "post": {
-        "tags": [
-          "Movies"
-        ],
+        "tags": ["Movies"],
         "description": "",
         "parameters": [
           {
@@ -433,194 +303,123 @@
             "schema": {
               "type": "object",
               "properties": {
-                "title": {
-                  "example": "any"
-                },
-                "director": {
-                  "example": "any"
-                },
-                "releaseDate": {
-                  "example": "any"
-                },
-                "studio": {
-                  "example": "any"
-                },
-                "price": {
-                  "example": "any"
-                },
-                "bio": {
-                  "example": "any"
-                },
-                "status": {
-                  "example": "any"
-                }
+                "title": { "example": "any" },
+                "director": { "example": "any" },
+                "releaseDate": { "example": "any" },
+                "studio": { "example": "any" },
+                "price": { "example": "any" },
+                "bio": { "example": "any" },
+                "status": { "example": "any" }
               }
             }
           }
         ],
         "responses": {
-          "201": {
-            "description": "Created"
-          },
-          "400": {
-            "description": "Bad Request"
-          },
-          "401": {
-            "description": "Unauthorized"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
+          "201": { "description": "Created" },
+          "400": { "description": "Bad Request" },
+          "401": { "description": "Unauthorized" },
+          "500": { "description": "Internal Server Error" }
         }
       }
     },
+
     "/movies/{id}": {
       "get": {
-        "tags": [
-          "Movies"
-        ],
+        "tags": ["Movies"],
         "description": "",
-        "produces": [
-          "application/json"
-        ],
+        "produces": ["application/json"],
         "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
+          { "name": "id", "in": "path", "required": true, "type": "string" }
         ],
         "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "400": {
-            "description": "Bad Request"
-          },
-          "404": {
-            "description": "Not Found"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
+          "200": { "description": "OK" },
+          "400": { "description": "Bad Request" },
+          "404": { "description": "Not Found" },
+          "500": { "description": "Internal Server Error" }
         }
       },
       "put": {
-        "tags": [
-          "Movies"
-        ],
+        "tags": ["Movies"],
         "description": "",
         "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          },
+          { "name": "id", "in": "path", "required": true, "type": "string" },
           {
             "name": "body",
             "in": "body",
             "schema": {
               "type": "object",
               "properties": {
-                "title": {
-                  "example": "any"
-                },
-                "director": {
-                  "example": "any"
-                },
-                "releaseDate": {
-                  "example": "any"
-                },
-                "studio": {
-                  "example": "any"
-                },
-                "price": {
-                  "example": "any"
-                },
-                "bio": {
-                  "example": "any"
-                },
-                "status": {
-                  "example": "any"
-                }
+                "title": { "example": "any" },
+                "director": { "example": "any" },
+                "releaseDate": { "example": "any" },
+                "studio": { "example": "any" },
+                "price": { "example": "any" },
+                "bio": { "example": "any" },
+                "status": { "example": "any" }
               }
             }
           }
         ],
         "responses": {
-          "204": {
-            "description": "No Content"
-          },
-          "400": {
-            "description": "Bad Request"
-          },
-          "401": {
-            "description": "Unauthorized"
-          },
-          "404": {
-            "description": "Not Found"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
+          "204": { "description": "No Content" },
+          "400": { "description": "Bad Request" },
+          "401": { "description": "Unauthorized" },
+          "404": { "description": "Not Found" },
+          "500": { "description": "Internal Server Error" }
         }
       },
       "delete": {
-        "tags": [
-          "Movies"
-        ],
+        "tags": ["Movies"],
         "description": "",
         "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
+          { "name": "id", "in": "path", "required": true, "type": "string" }
         ],
         "responses": {
-          "204": {
-            "description": "No Content"
-          },
-          "400": {
-            "description": "Bad Request"
-          },
-          "401": {
-            "description": "Unauthorized"
-          },
-          "404": {
-            "description": "Not Found"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
+          "204": { "description": "No Content" },
+          "400": { "description": "Bad Request" },
+          "401": { "description": "Unauthorized" },
+          "404": { "description": "Not Found" },
+          "500": { "description": "Internal Server Error" }
         }
       }
     },
+
     "/music/": {
       "get": {
-        "tags": [
-          "Music"
-        ],
-        "description": "",
-        "produces": [
-          "application/json"
+        "tags": ["Music"],
+        "description": "Get all music. Optional search by title, artist, and availability (status).",
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "title",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "description": "Search by title (partial match, case-insensitive)."
+          },
+          {
+            "name": "artist",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "description": "Search by artist (partial match, case-insensitive)."
+          },
+          {
+            "name": "status",
+            "in": "query",
+            "required": false,
+            "type": "boolean",
+            "description": "Availability: true = available, false = checked out."
+          }
         ],
         "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
+          "200": { "description": "OK" },
+          "400": { "description": "Bad Request" },
+          "500": { "description": "Internal Server Error" }
         }
       },
       "post": {
-        "tags": [
-          "Music"
-        ],
+        "tags": ["Music"],
         "description": "",
         "parameters": [
           {
@@ -629,169 +428,83 @@
             "schema": {
               "type": "object",
               "properties": {
-                "title": {
-                  "example": "any"
-                },
-                "artist": {
-                  "example": "any"
-                },
-                "releaseDate": {
-                  "example": "any"
-                },
-                "label": {
-                  "example": "any"
-                },
-                "price": {
-                  "example": "any"
-                },
-                "bio": {
-                  "example": "any"
-                },
-                "status": {
-                  "example": "any"
-                }
+                "title": { "example": "any" },
+                "artist": { "example": "any" },
+                "releaseDate": { "example": "any" },
+                "label": { "example": "any" },
+                "price": { "example": "any" },
+                "bio": { "example": "any" },
+                "status": { "example": "any" }
               }
             }
           }
         ],
         "responses": {
-          "201": {
-            "description": "Created"
-          },
-          "400": {
-            "description": "Bad Request"
-          },
-          "401": {
-            "description": "Unauthorized"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
+          "201": { "description": "Created" },
+          "400": { "description": "Bad Request" },
+          "401": { "description": "Unauthorized" },
+          "500": { "description": "Internal Server Error" }
         }
       }
     },
+
     "/music/{id}": {
       "get": {
-        "tags": [
-          "Music"
-        ],
+        "tags": ["Music"],
         "description": "",
-        "produces": [
-          "application/json"
-        ],
+        "produces": ["application/json"],
         "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
+          { "name": "id", "in": "path", "required": true, "type": "string" }
         ],
         "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "400": {
-            "description": "Bad Request"
-          },
-          "404": {
-            "description": "Not Found"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
+          "200": { "description": "OK" },
+          "400": { "description": "Bad Request" },
+          "404": { "description": "Not Found" },
+          "500": { "description": "Internal Server Error" }
         }
       },
       "put": {
-        "tags": [
-          "Music"
-        ],
+        "tags": ["Music"],
         "description": "",
         "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          },
+          { "name": "id", "in": "path", "required": true, "type": "string" },
           {
             "name": "body",
             "in": "body",
             "schema": {
               "type": "object",
               "properties": {
-                "title": {
-                  "example": "any"
-                },
-                "artist": {
-                  "example": "any"
-                },
-                "releaseDate": {
-                  "example": "any"
-                },
-                "label": {
-                  "example": "any"
-                },
-                "price": {
-                  "example": "any"
-                },
-                "bio": {
-                  "example": "any"
-                },
-                "status": {
-                  "example": "any"
-                }
+                "title": { "example": "any" },
+                "artist": { "example": "any" },
+                "releaseDate": { "example": "any" },
+                "label": { "example": "any" },
+                "price": { "example": "any" },
+                "bio": { "example": "any" },
+                "status": { "example": "any" }
               }
             }
           }
         ],
         "responses": {
-          "204": {
-            "description": "No Content"
-          },
-          "400": {
-            "description": "Bad Request"
-          },
-          "401": {
-            "description": "Unauthorized"
-          },
-          "404": {
-            "description": "Not Found"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
+          "204": { "description": "No Content" },
+          "400": { "description": "Bad Request" },
+          "401": { "description": "Unauthorized" },
+          "404": { "description": "Not Found" },
+          "500": { "description": "Internal Server Error" }
         }
       },
       "delete": {
-        "tags": [
-          "Music"
-        ],
+        "tags": ["Music"],
         "description": "",
         "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
+          { "name": "id", "in": "path", "required": true, "type": "string" }
         ],
         "responses": {
-          "204": {
-            "description": "No Content"
-          },
-          "400": {
-            "description": "Bad Request"
-          },
-          "401": {
-            "description": "Unauthorized"
-          },
-          "404": {
-            "description": "Not Found"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
+          "204": { "description": "No Content" },
+          "400": { "description": "Bad Request" },
+          "401": { "description": "Unauthorized" },
+          "404": { "description": "Not Found" },
+          "500": { "description": "Internal Server Error" }
         }
       }
     }

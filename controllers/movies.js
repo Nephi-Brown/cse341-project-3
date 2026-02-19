@@ -4,11 +4,30 @@ const { ObjectId } = require('mongodb');
 
 const isValidObjectId = (id) => ObjectId.isValid(id);
 
+const parseStatusQuery = (status) => {
+  if (status === undefined) return undefined;
+  if (status === 'true') return true;
+  if (status === 'false') return false;
+  return null;
+};
+
 const getAll = async (req, res) => {
   // #swagger.tags = ['Movies']
+  // #swagger.summary = 'Get all movies (optional search by title, director, status)'
   try {
-    const cursor = mongodb.getDatabase().db().collection('movies').find();
+    const { title, director, status } = req.query;
+
+    const filter = {};
+    if (title) filter.title = { $regex: title, $options: 'i' };
+    if (director) filter.director = { $regex: director, $options: 'i' };
+
+    const parsedStatus = parseStatusQuery(status);
+    if (parsedStatus === null) return res.status(400).json({ error: 'status must be true or false' });
+    if (parsedStatus !== undefined) filter.status = parsedStatus;
+
+    const cursor = mongodb.getDatabase().db().collection('movies').find(filter);
     const items = await cursor.toArray();
+
     res.setHeader('Content-Type', 'application/json');
     res.status(200).json(items);
   } catch (err) {
@@ -22,12 +41,7 @@ const getSingle = async (req, res) => {
     const { id } = req.params;
     if (!isValidObjectId(id)) return res.status(400).json({ error: 'Invalid movie id.' });
 
-    const item = await mongodb
-      .getDatabase()
-      .db()
-      .collection('movies')
-      .findOne({ _id: new ObjectId(id) });
-
+    const item = await mongodb.getDatabase().db().collection('movies').findOne({ _id: new ObjectId(id) });
     if (!item) return res.status(404).json({ error: 'Movie not found.' });
 
     res.setHeader('Content-Type', 'application/json');
@@ -47,16 +61,13 @@ const createMovie = async (req, res) => {
       studio: req.body.studio,
       price: req.body.price,
       bio: req.body.bio,
-      status: req.body.status // true = available, false = checked out
+      status: req.body.status
     };
 
     const response = await mongodb.getDatabase().db().collection('movies').insertOne(movie);
 
-    if (response.acknowledged) {
-      res.status(201).json({ insertedId: response.insertedId });
-    } else {
-      res.status(500).json({ error: 'Some error occurred while creating the movie.' });
-    }
+    if (response.acknowledged) res.status(201).json({ insertedId: response.insertedId });
+    else res.status(500).json({ error: 'Some error occurred while creating the movie.' });
   } catch (err) {
     res.status(500).json({ error: 'Failed to create movie.', details: err.message });
   }
@@ -98,12 +109,7 @@ const deleteMovie = async (req, res) => {
     const { id } = req.params;
     if (!isValidObjectId(id)) return res.status(400).json({ error: 'Invalid movie id.' });
 
-    const response = await mongodb
-      .getDatabase()
-      .db()
-      .collection('movies')
-      .deleteOne({ _id: new ObjectId(id) });
-
+    const response = await mongodb.getDatabase().db().collection('movies').deleteOne({ _id: new ObjectId(id) });
     if (response.deletedCount === 0) return res.status(404).json({ error: 'Movie not found.' });
 
     res.status(204).send();

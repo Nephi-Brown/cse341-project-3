@@ -4,18 +4,23 @@ const passport = require('passport');
 
 router.use('/', require('./swagger'));
 
+router.use('/books', require('./books'));
+router.use('/notes', require('./notes'));
+
 router.use('/literature', require('./literature'));
 router.use('/videogames', require('./videogames'));
 router.use('/movies', require('./movies'));
 router.use('/music', require('./music'));
 
+// NEW:
+router.use('/users', require('./users'));
+router.use('/borrow', require('./borrow'));
+
 router.get('/login', passport.authenticate('github'), (req, res) => {});
 
 router.get('/logout', function (req, res, next) {
   req.logout(function (err) {
-    if (err) {
-      return next(err);
-    }
+    if (err) return next(err);
     res.redirect('/');
   });
 });
